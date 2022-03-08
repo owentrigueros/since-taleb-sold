@@ -1,1 +1,1 @@
-0 18 * * * python bot.py >> taleb-bot.log
+00 19 * * * root python main.py >> sts.log
