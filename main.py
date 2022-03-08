@@ -14,12 +14,14 @@ The price of bitcoin has gone {up_down} {change}% since Taleb sold.
 """
 
 bot_user_id = "3805104374"
-
 btc_when_taleb_sold = 47164.0
+
+root_dir = os.path.dirname(os.path.realpath(__file__))
+img_dir = os.path.join(root_dir, "img")
 
 def main():
     config = configparser.RawConfigParser()
-    config.read("keys.ini")
+    config.read(os.path.join(root_dir, "keys.ini"))
     config_keys = config["keys"]
 
     consumer_key = config_keys["consumer_key"]
@@ -37,9 +39,9 @@ def main():
     up = True if change_since_taleb_sold > 0 else False
 
     if up:
-        files = {"media" : open('img/taleb-bad.png', 'rb')}
+        files = {"media" : open(os.path.join(img_dir, 'taleb-bad.png'), 'rb')}
     else:
-        files = {"media" : open('img/taleb-good.png', 'rb')}
+        files = {"media" : open(os.path.join(img_dir, 'taleb-good.png'), 'rb')}
 
     payload = {"media_category" : "TWEET_IMAGE", "additional_owners" : bot_user_id}
     media_id = upload_media(auth, payload, files)
@@ -59,12 +61,14 @@ def tweet(auth, payload):
     url = "https://api.twitter.com/2/tweets"
     r = requests.post(auth=auth, url=url, json=payload,
                       headers={"Content-Type": "application/json"})
+    print(r.content)
 
 def upload_media(auth, payload, files):
     url = "https://upload.twitter.com/1.1/media/upload.json"
     r = requests.post(auth=auth, url=url, data=payload, files=files)
     r_json = r.json()
     media_id = r_json["media_id_string"]
+    print(r.content)
     return media_id
 
 def get_btc(date):
