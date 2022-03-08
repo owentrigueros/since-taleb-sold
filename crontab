@@ -1,0 +1,1 @@
+0 18 * * * python bot.py >> taleb-bot.log
