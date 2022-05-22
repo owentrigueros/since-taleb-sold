@@ -10,7 +10,7 @@ from requests_oauthlib import OAuth1
 tweet_template = """
 Today #BTC is valued at {btc_today}.
 
-The price of bitcoin has gone {up_down} {change}% since Taleb sold.
+The price of bitcoin has gone {up_down} {change}% since Taleb (@nntaleb) sold.
 """
 
 bot_user_id = "3805104374"
