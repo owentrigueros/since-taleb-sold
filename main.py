@@ -32,9 +32,7 @@ def main():
     auth = connect_to_oauth(consumer_key, consumer_secret,
                             access_token, access_token_secret)
 
-    date_today = datetime.now()
-    date_today = date_today.strftime("%Y-%m-%d %H:%M:%S") 
-    btc_today = get_btc(date_today)
+    btc_today = get_btc()
     change_since_taleb_sold = round((((btc_today - btc_when_taleb_sold) / btc_when_taleb_sold ) * 100), 2)
     up = True if change_since_taleb_sold > 0 else False
 
@@ -68,12 +66,11 @@ def upload_media(auth, payload, files):
     r = requests.post(auth=auth, url=url, data=payload, files=files)
     r_json = r.json()
     media_id = r_json["media_id_string"]
-    print(r.content)
     return media_id
 
-def get_btc(date):
+def get_btc():
     url = "https://api.coinbase.com/v2/prices/spot?currency=USD"
-    r = requests.get(url, params={"date": date})
+    r = requests.get(url)
     r_json = r.json()
     btc = float(r_json["data"]["amount"])
     return btc
