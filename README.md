@@ -1,6 +1,6 @@
 # BTC since Taleb sold bot
 
-A (midly successful) [Twitter bot](https://twitter.com/sincetalebsold) that keeps track of the change of BTC since [Nassim Taleb](https://twitter.com/nntaleb) sold in early 2021.
+A (mildly successful) [Twitter bot](https://twitter.com/sincetalebsold) that keeps track of the change of BTC since [Nassim Taleb](https://twitter.com/nntaleb) sold in early 2021.
 
 ## Why?
 
